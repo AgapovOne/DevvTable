@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D3A82941D39005000195FD4 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A82931D39005000195FD4 /* TriangleView.swift */; };
 		8D7FDAFD1D38D29000B66A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FDAFC1D38D29000B66A9B /* AppDelegate.swift */; };
 		8D7FDB021D38D29000B66A9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7FDB001D38D29000B66A9B /* Main.storyboard */; };
 		8D7FDB041D38D29000B66A9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D7FDB031D38D29000B66A9B /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D3A82931D39005000195FD4 /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		8D7FDAF91D38D29000B66A9B /* DevTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7FDAFC1D38D29000B66A9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D7FDB011D38D29000B66A9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				8D7FDAFC1D38D29000B66A9B /* AppDelegate.swift */,
 				8D7FDB101D38D34400B66A9B /* MainTableViewController.swift */,
 				8D7FDB141D38F60300B66A9B /* DiagonalTableViewCell.swift */,
+				8D3A82931D39005000195FD4 /* TriangleView.swift */,
 				8D7FDB0F1D38D32000B66A9B /* Views */,
 				8D7FDB0E1D38D31A00B66A9B /* Supporting Files */,
 			);
@@ -156,6 +159,7 @@
 			files = (
 				8D7FDB111D38D34400B66A9B /* MainTableViewController.swift in Sources */,
 				8D7FDAFD1D38D29000B66A9B /* AppDelegate.swift in Sources */,
+				8D3A82941D39005000195FD4 /* TriangleView.swift in Sources */,
 				8D7FDB151D38F60300B66A9B /* DiagonalTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

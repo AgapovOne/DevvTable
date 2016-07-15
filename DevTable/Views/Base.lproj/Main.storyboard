@@ -3,22 +3,77 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Main Table View Controller-->
         <scene sceneID="mcT-zI-AuA">
             <objects>
-                <tableViewController id="Reb-96-cSU" sceneMemberID="viewController">
+                <tableViewController id="Reb-96-cSU" customClass="MainTableViewController" customModule="DevTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9sA-et-Uwq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="diagonalTableViewCell" id="sbF-aU-HbI" customClass="DiagonalTableViewCell" customModule="DevTable" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sbF-aU-HbI" id="MGw-tk-agh">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsx-kW-9uo" customClass="TriangeView" customModule="DevTable" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="triangleBackgroundColor">
+                                                    <color key="value" red="0.90980392694473267" green="0.92549020051956177" blue="0.93333333730697632" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isTopTriangleType" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isLeftTriangleType" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZs-3w-nHm">
+                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Bsx-kW-9uo" firstAttribute="top" secondItem="MGw-tk-agh" secondAttribute="top" id="32R-Tp-bal"/>
+                                        <constraint firstItem="wZs-3w-nHm" firstAttribute="centerY" secondItem="MGw-tk-agh" secondAttribute="centerY" id="XgX-jW-BMJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Bsx-kW-9uo" secondAttribute="bottom" id="aMO-T5-9Dd"/>
+                                        <constraint firstItem="wZs-3w-nHm" firstAttribute="leading" secondItem="MGw-tk-agh" secondAttribute="leadingMargin" constant="7" id="aqf-hO-44y"/>
+                                        <constraint firstAttribute="trailing" secondItem="Bsx-kW-9uo" secondAttribute="trailing" id="jjL-sG-jjR"/>
+                                        <constraint firstItem="Bsx-kW-9uo" firstAttribute="leading" secondItem="MGw-tk-agh" secondAttribute="leading" id="rAH-e3-or9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="title" destination="wZs-3w-nHm" id="4Yg-jN-kIv"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Reb-96-cSU" id="PMA-Dc-5hY"/>
                             <outlet property="delegate" destination="Reb-96-cSU" id="Ii3-yP-GKn"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wy4-2S-IiK"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="85G-53-Ock">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Updating...">
+                                <attributes>
+                                    <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="refreshData:" destination="Reb-96-cSU" eventType="valueChanged" id="tqn-6K-2Xz"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vrj-Iz-tUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

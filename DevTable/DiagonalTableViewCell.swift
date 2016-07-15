@@ -10,11 +10,5 @@ import UIKit
 import CoreGraphics
 
 class DiagonalTableViewCell: UITableViewCell {
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-    
-    
-  }
+  @IBOutlet weak var title: UILabel!
 }

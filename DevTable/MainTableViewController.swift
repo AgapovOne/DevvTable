@@ -10,7 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
   
-  var dataSource: [Int] = Array(1...20) {
+  var dataSource: [Int] = [] {
     didSet {
       self.tableView.reloadData()
     }
@@ -19,83 +19,59 @@ class MainTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
+    let refreshingControl: UIRefreshControl = {
+      let control = UIRefreshControl()
+      control.addTarget(self, action: #selector(refreshDataSource), forControlEvents: UIControlEvents.ValueChanged)
+      return control
+    }()
+    self.refreshControl = refreshingControl
+    self.tableView.tableHeaderView?.addSubview(refreshingControl)
+    self.refreshControl?.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    tableView.tableFooterView = UIView()
+    tableView.separatorStyle = .None
+    
+    dataSource = Array(1...20)
   }
-  
 }
 
 // MARK: - Table view data source
 extension MainTableViewController {
+  func reloadData() {
+    self.tableView.reloadData()
+    dispatch_after(dispatch_time_t(2.0), dispatch_get_main_queue()) {
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func refreshDataSource() {
+    dataSource = Array(1...15)
+    reloadData()
+  }
+  
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
     return 1
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
     return dataSource.count
   }
   
-  /*
-   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-   let cell = UITableViewCell()
-   
-   // Configure the cell...
-   //    cell
-   
-   return cell
-   }*/
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCellWithIdentifier("diagonalTableViewCell") as? DiagonalTableViewCell else {
+      return UITableViewCell()
+    }
+    
+    cell.title.text = String(dataSource[indexPath.row])
+    
+    return cell
+  }
   
-  /*
-   // Override to support conditional editing of the table view.
-   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-   // Return false if you do not want the specified item to be editable.
-   return true
-   }
-   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
   
-  /*
-   // Override to support editing the table view.
-   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-   if editingStyle == .Delete {
-   // Delete the row from the data source
-   tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-   } else if editingStyle == .Insert {
-   // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-   }
-   }
-   */
-  
-  /*
-   // Override to support rearranging the table view.
-   override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-   
-   }
-   */
-  
-  /*
-   // Override to support conditional rearranging of the table view.
-   override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-   // Return false if you do not want the item to be re-orderable.
-   return true
-   }
-   */
-  
-}
-
-// MARK: - Navigation
-extension MainTableViewController {
-  /*
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 54.0
+  }
 }
