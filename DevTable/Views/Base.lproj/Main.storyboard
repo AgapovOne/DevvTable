@@ -29,8 +29,10 @@
                                                 <userDefinedRuntimeAttribute type="color" keyPath="triangleBackgroundColor">
                                                     <color key="value" red="0.90980392694473267" green="0.92549020051956177" blue="0.93333333730697632" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isTopTriangleType" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isLeftTriangleType" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="triangleTypeInt">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZs-3w-nHm">

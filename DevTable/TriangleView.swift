@@ -10,9 +10,9 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-enum TriangleCorner {
-  case TopLeft
+enum TriangleCorner:Int {
   case TopRight
+  case TopLeft
   case BottomRight
   case BottomLeft
 }
@@ -21,6 +21,17 @@ enum TriangleCorner {
 class TriangeView : UIView {
   
   var triangleType: TriangleCorner = .TopLeft
+  
+  // Adapter
+  @IBInspectable
+  var triangleTypeInt: Int {
+    set {
+      self.triangleType = TriangleCorner(rawValue: newValue) ?? .TopRight
+    }
+    get {
+      return triangleType.rawValue
+    }
+  }
   
   @IBInspectable
   var isTopTriangleType: Bool = true {
